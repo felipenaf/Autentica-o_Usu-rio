@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>SENAC - Cadastro</title>
+		<meta charset="utf-8">
+
+		<script type="text/javascript">
+
+			function validar_login(){
+				var login = document.getElementById('login');
+				var login_valor = document.getElementById('login').value;
+				var login_tamanho = login_valor.length;
+				
+				var senha = document.getElementById('senha');
+				var senha_valor = document.getElementById('senha').value;
+				var senha_tamanho = senha_valor.length;
+
+				if (login_tamanho < 5) {
+					document.getElementById('login_erro').style.display = "block";
+    			login.focus();
+					return false;
+				}else {
+					document.getElementById('login_erro').style.display = "none";
+				}
+
+				if (senha_tamanho < 6) {
+					document.getElementById('senha_erro').style.display = "block";
+					senha.focus();
+					return false;
+				}else {
+					document.getElementById('senha_erro').style.display = "none";
+				}
+
+				//return true;
+			}
+		</script>
+
+		<link rel="stylesheet" type="text/css" href="style.css">
+
+		<style type="text/css">
+
+			#cadastro{
+				width: 500px;
+				border: 5px solid black;
+				background-color: white;
+				padding: 5px;
+			}
+
+			#cadastro h5{
+				margin-left: 5px;
+				color: red;
+			}
+
+			#cadastro #login_erro, #senha_erro{
+				display: none;
+			}
+
+			#cadastro a {
+				text-decoration: none;
+				color: black;
+			}
+
+			#cadastro a:hover {
+				text-decoration: underline;
+			}
+
+			#cadastro input[type=text], input[type=password] {
+				display: block;
+				margin: 10px 5px 0px 5px;
+				width: 150px;
+			}
+
+			#cadastro input[type=submit]{
+				margin: 10px 5px;
+				padding: 2px 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="cadastro">
+
+			<h1>Cadastro de Login</h1>
+
+			<h4>Insira um login e uma senha para poder acessar o sistema.</h4><br>
+
+			<form action="cadastro.php" method="POST" onsubmit="return validar_login()">
+				
+				<input id="login" type="text" name="login" placeholder="Login" pattern="[a-zA-Z0-9_.-]+" title="Não são permitidos caracteres especiais" required>
+				<div id="login_erro"><h5>O login deve conter no mínimo 5 caractéres</h5></div>
+
+				<input id="senha" type="password" name="senha" placeholder="Senha" pattern="[a-zA-Z0-9]+" required>
+				<div id="senha_erro"><h5>A senha deve conter no mínimo 6 caractéres</h5></div>
+
+				<br>
+
+				<input type="submit" name="acao" value="Salvar">
+
+				<a href="index.html">Voltar a tela de login</a>
+			</form>
+		</div>
+	</body>
+</html>
